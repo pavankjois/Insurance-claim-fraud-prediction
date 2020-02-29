@@ -1,0 +1,285 @@
+<html>
+<head>
+	<style>
+* {
+  box-sizing: border-box;
+}
+div {
+  width: 500px;
+  border: 15px solid green;
+  padding: 50px;
+  margin: 20px;
+}
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+</style>
+</head>
+<body> 
+	<h2 style='text-align: center;'>Insurance Claim  Fraud Prediction</h2> 
+
+<div> 
+<form action="/result" method="POST">
+	<label for="Area_Service">Area_Service</label> 
+	<select id="Area_Service" name="Area_Service"> 
+	<option value="6">Western NY</option> 
+	<option value="2">Finger Lakes</option> 
+	<option value="1">Central NY</option> 
+	<option value="5">Southern Tier</option> 
+	<option value="0">Capital/Adirond</option> 
+	<option value="3">Hudson Valley</option> 
+	<option value="4">New York City</option> 
+	</select>
+	<br> 
+	<label for="Hospital County">Hospital County</label> 
+	<select id="Hospital County" name="Hospital County"> 
+	<option value="1">Allegany</option> 
+	<option value="4">Cattaraugus</option> 
+	<option value="6">Chautauqua</option> 
+	<option value="14">Erie</option> 
+	<option value="18">Genesee</option> 
+	<option value="26">Niagara</option> 
+	<option value="31">Orleans</option> 
+	<option value="49">Wyoming</option> 
+	<option value="7">Chemung</option> 
+	<option value="22">Livingston</option> 
+	<option value="24">Monroe</option> 
+	<option value="29">Ontario</option> 
+	<option value="40">Schuyler</option> 
+	<option value="42">Steuben</option> 
+	<option value="47">Wayne</option> 
+	<option value="50">Yates</option> 
+	<option value="32">Oswego</option>
+	<option value="3">Broome</option>
+	<option value="5">Cayuga</option>
+	<option value="8">Chenango</option>
+	<option value="11">Cortland</option>
+	<option value="19">Herkimer</option>
+	<option value="20">Jefferson</option>
+	<option value="21">Lewis</option>
+	<option value="23">Madison</option>
+	<option value="27">Oneida</option>
+	<option value="28">Onondaga</option>
+	<option value="41">St Lawrence</option>
+	<option value="44">Tompkins</option>
+	<option value="0">Albany</option>
+	<option value="9">Clinton</option>
+	<option value="10">Columbia</option>
+	<option value="12">Delaware</option>
+	<option value="15">Essex</option>
+	<option value="16">Franklin</option>
+	<option value="17">Fulton</option>
+	<option value="25">Montgomery</option>
+	<option value="33">Otsego</option>
+	<option value="35">Rensselaer</option>
+	<option value="37">Saratoga</option>
+	<option value="38">Schenectady</option>
+	<option value="39">Schoharie</option>
+	<option value="46">Warren</option>
+	<option value="13">Dutchess</option>
+	<option value="30">Orange</option>
+	<option value="34">Putnam</option>
+	<option value="36">Rockland</option>
+	<option value="43">Sullivan</option>
+	<option value="45">Ulster</option>
+	<option value="48">Westchester</option>
+	<option value="2">Bronx</option>
+	</select> 
+	<br>
+	<label for="Age">Age</label> 
+	<select id="Age" name="Age">  
+	<option value="2">30 to 49</option> 
+	<option value="4">70 or Older</option>  
+	<option value="0">0 to 17</option> 
+	<option value="1">18 to 29</option> 
+	<option value="3">50 to 69</option> 
+	</select>
+	<br>
+	<label for="zip_code_3_digits">zip_code_3_digits</label> 
+	<input type="text" id="zip_code_3_digits" name="zip_code_3_digits">
+	<br>
+
+	<label for="Gender">Gender</label> 
+	<select id="Gender" name="Gender"> 
+	<option value="0">Male</option> 
+	<option value="1">Female</option> 
+	<option value="2">Other</option> 
+	</select>
+  	<br>
+  	<label for="Cultural_group">Cultural_group</label> 
+	<select id="Cultural_group" name="Cultural_group">  
+	<option value="3">White</option>  
+	<option value="0">Other Race</option> 
+	<option value="1">Black/African American</option> 
+	<option value="2">Unknown</option> 
+	</select>
+	<br>
+	<label for="ethnicity">ethnicity</label> 
+	<select id="ethnicity" name="ethnicity"> 
+	<option value="0">Not Span/Hispanic</option> 
+	<option value="1">Spanish/Hispanic</option> 
+	<option value="2"> Unknown</option> 
+	</select>
+	<br>
+  	<label for="Days_spend_hsptl">Days_spend_hsptl</label> 
+	<input type="text" id="Days_spend_hsptl" name="Days_spend_hsptl">
+	<br>
+
+	<label for="Admission_type">Admission_type</label> 
+	<select id="Admission_type" name="Admission_type"> 
+	<option value="0">Elective</option> 
+	<option value="5">Urgent</option> 
+	<option value="1">Emergency</option> 
+	<option value="2">Newborn</option> 
+	<option value="3">Not Available</option>  
+	<option value="4">Trauma</option> 
+	</select>
+	<br>
+	<label for="Home or self care,">Home or self care</label> 
+	<select id="Home or self care," name="Home or self care,"> 
+	<option value="7">Home or Self Care</option> 
+	<option value="17">Short-term Hospital</option> 
+	<option value="9">Hosp Basd Medicare Approved Swing Bed</option> 
+	<option value="18">Facility w/ Custodial/Supportive Care</option> 
+	<option value="4">Skilled Nursing Home</option> 
+	<option value="13">Expired</option> 
+	<option value="8">Left Against Medical Advice</option> 
+	<option value="5">Home w/ Home Health Services</option> 
+	<option value="16">Psychiatric Hospital or Unit of Hosp</option> 
+	<option value="10">Hospice - Home</option> 
+	<option value="11">Hospice - Medical Facility</option> 
+	<option value="6">Federal Health Care Facility</option> 
+	<option value="12">Inpatient Rehabilitation Facility</option> 
+	<option value="1">Cancer Center or Children's Hospital</option> 
+	<option value="2">Court/Law Enforcement</option> 
+	<option value="15">Medicare Cert Long Term Care Hospital</option> 
+	<option value="0">Another Type Not Listed</option>
+	<option value="3">Critical Access Hospital</option>
+	<option value="14">Medicaid Cert Nursing Facility</option>
+	</select> 
+	<br>
+	<label for="ccs_diagnosis_code">ccs_diagnosis_code</label> 
+	<input type="text" id="ccs_diagnosis_code" name="ccs_diagnosis_code">
+	<br>
+	<label for="ccs_procedure_code">ccs_procedure_code</label> 
+	<input type="text" id="ccs_procedure_code" name="ccs_procedure_code">
+	<br>
+	<label for="Code_illness">Code_illness</label> 
+	<input type="text" id="Code_illness" name="Code_illness">
+	<br>
+	<label for="Mortality risk">Mortality risk</label> 
+	<select id="Mortality risk" name="Mortality risk">  
+	<option value="2">Minor</option> 
+	<option value="1">Major</option>  
+	<option value="3">Moderate</option> 
+	<option value="0">Extreme</option>  
+	</select>
+	<br>
+	<label for="Surg_Description">Surg_Description</label> 
+	<select id="Surg_Description" name="Surg_Description">  
+	<option value="0">Medical</option> 
+	<option value="1">Surgical</option>   
+	</select>
+	<br>
+	<label for="Payment_typology_1">Payment_typology_1</label> 
+	<select id="Payment_typology_1" name="Payment_typology_1"> 
+	<option value="0">Blue Cross/Blue Shield</option> 
+	<option value="5">Medicare</option> 
+	<option value="7">Private Health Insurance</option> 
+	<option value="4">Medicaid</option> 
+	<option value="8">Federal/State/Local/VA</option> 
+	<option value="6">Self-Pay</option> 
+	<option value="2">Miscellaneous/Other</option> 
+	<option value="1">Department of Corrections</option> 
+	<option value="3">Unspecified</option> 
+	<option value="9">Unknown</option> 
+	</select> 
+	<br>
+	<label for="Weight_baby">Weight_baby</label> 
+	<input type="text" id="Weight_baby" name="Weight_baby">
+	<br>
+	<label for="Abortion">Abortion</label> 
+	<select id="Abortion" name="Abortion">  
+	<option value="0">Y</option> 
+	<option value="1">N</option>   
+	</select>
+	<br>
+	<label for="Emergency dept_yes/No">Emergency dept_yes/No</label> 
+	<select id="Emergency dept_yes/No" name="Emergency dept_yes/No">  
+	<option value="0">Y</option> 
+	<option value="1">N</option>   
+	</select>
+	<br>
+	<label for="Tot_charg">Tot_charg</label> 
+	<input type="text" id="Tot_charg" name="Tot_charg">
+	<br>
+	<label for="Tot_cost">Tot_cost</label> 
+	<input type="text" id="Tot_cost" name="Tot_cost">
+	<br>
+	<label for="ratio_of_total_costs_to_total_charges">ratio_of_total_costs_to_total_charges</label> 
+	<input type="text" id="ratio_of_total_costs_to_total_charges" name="ratio_of_total_costs_to_total_charges">
+	<br>
+	<input style="text-align:center" type="submit" value="Submit"> 
+
+
+
+</form>
+</div>
+</body>
+</html>
